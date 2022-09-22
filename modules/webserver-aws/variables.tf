@@ -13,7 +13,7 @@ variable "hcp_channel_name" {
 
 variable "prefix" {
   description = "This prefix will be included in the name of most resources."
-  default     = "ruddy"
+  default     = "pthrasher"
 }
 
 variable "address_space" {
@@ -33,7 +33,7 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "The key name of the Key Pair to use for the instance"
-  default     = "ruddy-packer-demo"
+  default     = "pthrasher-packer-demo"
 }
 
 variable "hcp_bucket_name" {
