@@ -97,13 +97,22 @@ resource "aws_route_table_association" "hashiapp" {
   route_table_id = aws_route_table.hashiapp.id
 }
 
+resource "tls_private_key" "hashiapp" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+resource "aws_key_pair" "generated_key" {
+  public_key = tls_private_key.hashiapp.public_key_openssh
+}
+
 resource "aws_instance" "hashiapp" {
   ami                         = data.hcp_packer_image.hashiapp_image.cloud_image_id
   instance_type               = var.instance_type
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.hashiapp.id
   vpc_security_group_ids      = [aws_security_group.hashiapp.id]
-  key_name                    = var.key_name
+  key_name                    = aws_key_pair.generated_key.key_name
 
   tags = {
     Name = "${var.prefix}-centos7-instance"
@@ -111,7 +120,7 @@ resource "aws_instance" "hashiapp" {
 
   lifecycle {
     postcondition {
-      condition = self.ami == data.hcp_packer_image.hashiapp_image.cloud_image_id
+      condition     = self.ami == data.hcp_packer_image.hashiapp_image.cloud_image_id
       error_message = "Must use the latest available AMI, ${data.hcp_packer_image.hashiapp_image.cloud_image_id}."
     }
   }
