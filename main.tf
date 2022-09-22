@@ -11,10 +11,10 @@ terraform {
   }
 
   cloud {
-    organization = "TPMM-Org"
+    organization = "pthrasher"
 
     workspaces {
-      tags = ["hashiconf", "packer", "service:aws"]
+      tags = ["packer", "service:aws"]
     }
   }
 }
@@ -25,7 +25,7 @@ provider "aws" {
   default_tags {
     tags = {
       Environment = "Demo"
-      Name        = "Ruddy"
+      Name        = "pthrasher"
     }
   }
 }
