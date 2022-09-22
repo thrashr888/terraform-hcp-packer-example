@@ -31,11 +31,6 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "key_name" {
-  description = "The key name of the Key Pair to use for the instance"
-  default     = "pthrasher-packer-demo"
-}
-
 variable "hcp_bucket_name" {
   description = "The bucket name which should be referenced from HCP Packer"
   default     = "centos7-web-aws"
