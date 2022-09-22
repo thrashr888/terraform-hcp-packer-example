@@ -19,3 +19,8 @@ variable "hcp_channel_name" {
     error_message = "The HCP Packer channel name can only be of: production, development, testing"
   }
 }
+
+variable "hcp_bucket_name" {
+  description = "The bucket name which should be referenced from HCP Packer"
+  default     = "centos7-web-aws"
+}

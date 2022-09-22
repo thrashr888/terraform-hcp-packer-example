@@ -40,4 +40,5 @@ module "webserver-aws" {
 
   region           = var.region
   hcp_channel_name = var.hcp_channel_name
+  hcp_bucket_name  = var.hcp_bucket_name
 }
